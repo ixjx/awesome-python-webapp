@@ -1,4 +1,4 @@
-awesome-python-webapp
+python-blog
 =====================
 
 python blog project
