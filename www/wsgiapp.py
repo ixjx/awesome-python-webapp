@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 __author__ = 'shurrik'
@@ -37,16 +37,15 @@ db.create_engine(**configs.db)
 wsgi = WSGIApplication(os.path.dirname(os.path.abspath(__file__)))
 
 template_engine = Jinja2TemplateEngine(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'))
-# 把filter添加到jinjia2，filter名称为datetime，filter本身是一个函数对象:
 template_engine.add_filter('datetime', datetime_filter)
 
 wsgi.template_engine = template_engine
 
 import urls
 
+wsgi.add_interceptor(urls.user_interceptor)
+wsgi.add_interceptor(urls.manage_interceptor)
 wsgi.add_module(urls)
 
 if __name__ == '__main__':
     wsgi.run(9000, host='0.0.0.0')
-else:
-    application = wsgi.get_wsgi_application()
