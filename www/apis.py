@@ -36,8 +36,19 @@ class Page(object):
 
     __repr__ = __str__
 
+def _dump(obj):
+    if isinstance(obj, Page):
+        return {
+            'page_index': obj.page_index,
+            'page_count': obj.page_count,
+            'item_count': obj.item_count,
+            'has_next': obj.has_next,
+            'has_previous': obj.has_previous
+        }
+    raise TypeError('%s is not JSON serializable' % obj)
+
 def dumps(obj):
-    return json.dumps(obj)
+    return json.dumps(obj, default=_dump)
 
 class APIError(StandardError):
     '''
