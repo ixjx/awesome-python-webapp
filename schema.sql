@@ -46,7 +46,6 @@ create table comments (
     primary key (`id`)
 ) engine=innodb default charset=utf8;
 
--- email / password:
 -- vissky1@163.com / password
 
 insert into users (`id`, `email`, `password`, `admin`, `name`,`image`, `created_at`) values ('0010018336417540987fff4508f43fbaed718e263442526000', 'vissky1@163.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'root', 'http://bcs.duapp.com/codeshurrik-123/shurrik.jpg',1402909113.628);
